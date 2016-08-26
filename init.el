@@ -38,9 +38,6 @@
 ;   (exec-path-from-shell-initialize)
 ;    (exec-path-from-shell-copy-env "GOPATH"))
 
-(add-hook 'go-mode-hook (lambda ()
-			  (local-set-key (kbd \"M-.\") 'godef-jump)))
-
 (defun auto-complete-for-go ()
     (auto-complete-mode 1))
 (add-hook 'go-mode-hook 'auto-complete-for-go)
