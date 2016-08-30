@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ((("window-numbering-mode" .
    [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
   ("window-numbering" .
@@ -23,6 +24,9 @@
   ("c" .
    [1])
   ("go-mode-syntax-table" .
+=======
+((("go-mode-syntax-table" .
+>>>>>>> 252a3881be84aadedb0abbca1c5f8cf5dfbef8ab
    [0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0])
   ("with-eval-after-load" .
    [0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
@@ -41,7 +45,11 @@
   ("go-mode-autoloads" .
    [0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0])
   ("require" .
+<<<<<<< HEAD
    [0 0 0 7 5 0 0])
+=======
+   [0 0 0 7 4 0 0])
+>>>>>>> 252a3881be84aadedb0abbca1c5f8cf5dfbef8ab
   ("go-mode" .
    [1 0 0 0 0 0 0])
   ("unicad" .
@@ -79,6 +87,7 @@
   ("config" .
    [3 0 0 0 0 0])
   ("Println" .
+<<<<<<< HEAD
    [0 0 0 0 0 1 0])
   ("CURDIR" .
    [0 0 0 2 0 1])
@@ -98,3 +107,6 @@
    [0 0 1 0 0])
   ("func" .
    [0 0 0 1])))
+=======
+   [0 0 0 0 0 1 0])))
+>>>>>>> 252a3881be84aadedb0abbca1c5f8cf5dfbef8ab
