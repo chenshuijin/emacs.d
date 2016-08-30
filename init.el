@@ -17,12 +17,20 @@
 (require 'go-mode)
 (require 'auto-complete-config)
 (require 'popup)
+<<<<<<< HEAD
+(require 'window-numbering)
+(window-numbering-mode 1)
+(package-initialize)
+(setq url-http-attempt-keepalives nil)
+
+=======
 
 (package-initialize)
 (setq url-http-attempt-keepalives nil)
 ;;----------------------------------------------------------------------------
 ;; Which functionality to enable (use t or nil for true and false)
 ;;----------------------------------------------------------------------------
+>>>>>>> 252a3881be84aadedb0abbca1c5f8cf5dfbef8ab
 (add-hook 'before-save-hook 'gofmt-before-save)
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
@@ -56,6 +64,9 @@
 
 (ac-config-default)
 
+<<<<<<< HEAD
+(put 'upcase-region 'disabled nil)
+=======
 
 
 
@@ -66,3 +77,4 @@
 
 
 
+>>>>>>> 252a3881be84aadedb0abbca1c5f8cf5dfbef8ab
