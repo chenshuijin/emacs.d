@@ -1,112 +1,112 @@
-<<<<<<< HEAD
-((("window-numbering-mode" .
-   [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
-  ("window-numbering" .
-   [0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("Templates" .
-   [1 0 0 0 0 0 0 0 0])
-  ("Template" .
-   [0 0 0 0 1 0 0 0])
-  ("SmsSvrConf" .
-   [0 0 0 0 1 0 0 0 0 0])
-  ("SmsProvider" .
-   [0 0 0 0 1 0 0 0 0 0 0])
-  ("string" .
-   [2 0 0 0 0 0])
-  ("map" .
+((("slog" .
+   [0 0 1 0])
+  ("Language" .
+   [0 0 0 1 0 0 0 0])
+  ("Get" .
    [1 0 0])
-  ("SmsProviders" .
-   [0 0 0 0 0 0 1 0 0 0 0 0])
-  ("t" .
+  ("i18n" .
+   [0 0 1 0])
+  ("YunpianTemplates" .
+   [0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("func" .
+   [0 0 0 1])
+  ("Parse" .
+   [0 0 1 0 0])
+  ("C" .
+   [1])
+  ("flag" .
+   [1 0 0 0])
+  ("nil" .
+   [1 0 0])
+  ("if" .
+   [1 0])
+  ("err" .
+   [2 0 0])
+  ("GOPATH" .
+   [1 0 0 0 0 0])
+  ("CURDIR" .
+   [0 0 0 2 0 1])
+  ("Println" .
+   [0 0 0 0 0 1 0])
+  ("config" .
+   [3 0 0 0 0 0])
+  ("net" .
+   [2 0 0])
+  ("self-insert-command" .
+   [0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
+  ("setq" .
+   [1 0 0 0])
+  ("company-go" .
+   [0 0 0 0 1 0 0 0 0 0])
+  ("company" .
+   [0 0 0 0 1 0 0])
+  ("go-mode-load" .
+   [0 0 0 0 0 1 0 0 0 0 0 0])
+  ("godef-jump" .
+   [2 0 0 0 0 0 0 0 0 0])
+  ("kbd" .
+   [2 0 0])
+  ("local-set-key" .
+   [0 0 0 0 0 0 0 0 0 1 1 0 0])
+  ("lambda" .
+   [0 0 0 1 0 0])
+  ("go-mode-hook" .
+   [0 0 0 0 0 0 0 0 0 3 0 0])
+  ("add-hook" .
+   [2 0 0 0 0 0 1 0])
+  ("auto-complete" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1])
+  ("go-autocomplete" .
+   [0 0 2 0 0 1 0 1 0 0 0 0 0 0 0])
+  ("region-end" .
+   [0 0 1 0 0 0 0 0 0 0])
+  ("unicad" .
+   [0 0 0 0 1 0])
+  ("go-mode" .
+   [1 0 0 0 0 0 0])
+  ("require" .
+   [0 0 0 7 5 0 0])
+  ("go-mode-autoloads" .
+   [0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("log" .
+   [8 0 0])
+  ("fmt" .
+   [6 0 0])
+  ("Log" .
+   [0 0 1])
+  ("setenv" .
+   [0 0 0 0 1 1])
+  ("defun" .
+   [1 0 0 0 0])
+  ("go-mode-godef-hook" .
+   [0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
+  ("with-eval-after-load" .
+   [0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
+  ("go-mode-syntax-table" .
+   [0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("c" .
    [1])
   ("Conf" .
    [1 0 0 0])
-  ("c" .
+  ("t" .
    [1])
-  ("go-mode-syntax-table" .
-=======
-((("go-mode-syntax-table" .
->>>>>>> 252a3881be84aadedb0abbca1c5f8cf5dfbef8ab
-   [0 0 0 0 0 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("with-eval-after-load" .
-   [0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
-  ("go-mode-godef-hook" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0])
-  ("defun" .
-   [1 0 0 0 0])
-  ("setenv" .
-   [0 0 0 0 1 1])
-  ("Log" .
-   [0 0 1])
-  ("fmt" .
-   [6 0 0])
-  ("log" .
-   [8 0 0])
-  ("go-mode-autoloads" .
-   [0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0])
-  ("require" .
-<<<<<<< HEAD
-   [0 0 0 7 5 0 0])
-=======
-   [0 0 0 7 4 0 0])
->>>>>>> 252a3881be84aadedb0abbca1c5f8cf5dfbef8ab
-  ("go-mode" .
-   [1 0 0 0 0 0 0])
-  ("unicad" .
-   [0 0 0 0 1 0])
-  ("region-end" .
-   [0 0 1 0 0 0 0 0 0 0])
-  ("go-autocomplete" .
-   [0 0 2 0 0 1 0 1 0 0 0 0 0 0 0])
-  ("auto-complete" .
-   [0 0 0 0 0 0 0 0 0 0 0 0 1])
-  ("add-hook" .
-   [2 0 0 0 0 0 1 0])
-  ("go-mode-hook" .
-   [0 0 0 0 0 0 0 0 0 3 0 0])
-  ("lambda" .
-   [0 0 0 1 0 0])
-  ("local-set-key" .
-   [0 0 0 0 0 0 0 0 0 1 1 0 0])
-  ("kbd" .
-   [2 0 0])
-  ("godef-jump" .
-   [2 0 0 0 0 0 0 0 0 0])
-  ("go-mode-load" .
-   [0 0 0 0 0 1 0 0 0 0 0 0])
-  ("company" .
-   [0 0 0 0 1 0 0])
-  ("company-go" .
-   [0 0 0 0 1 0 0 0 0 0])
-  ("setq" .
-   [1 0 0 0])
-  ("self-insert-command" .
-   [0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
-  ("net" .
-   [2 0 0])
-  ("config" .
-   [3 0 0 0 0 0])
-  ("Println" .
-<<<<<<< HEAD
-   [0 0 0 0 0 1 0])
-  ("CURDIR" .
-   [0 0 0 2 0 1])
-  ("GOPATH" .
-   [1 0 0 0 0 0])
-  ("err" .
-   [2 0 0])
-  ("if" .
-   [1 0])
-  ("nil" .
+  ("SmsProviders" .
+   [0 0 0 0 0 0 1 0 0 0 0 0])
+  ("map" .
    [1 0 0])
-  ("flag" .
-   [1 0 0 0])
-  ("C" .
-   [1])
-  ("Parse" .
-   [0 0 1 0 0])
-  ("func" .
-   [0 0 0 1])))
-=======
-   [0 0 0 0 0 1 0])))
->>>>>>> 252a3881be84aadedb0abbca1c5f8cf5dfbef8ab
+  ("string" .
+   [2 0 0 0 0 0])
+  ("SmsProvider" .
+   [0 0 0 0 1 0 0 0 0 0 0])
+  ("SmsSvrConf" .
+   [0 0 0 0 1 0 0 0 0 0])
+  ("Template" .
+   [0 0 0 0 1 0 0 0])
+  ("Templates" .
+   [1 0 0 0 0 0 0 0 0])
+  ("window-numbering" .
+   [0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0])
+  ("window-numbering-mode" .
+   [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0])
+  ("ListenAndServe" .
+   [0 1 0 0 0 0 0 0 0 0 0 0 0 0])))
