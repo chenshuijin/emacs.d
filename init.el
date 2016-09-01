@@ -48,11 +48,8 @@
   (local-set-key (kbd "M-.") 'godef-jump))
 (add-hook 'go-mode-hook 'go-mode-godef-hook)
 
-(with-eval-after-load 'go-mode
-  (require 'go-autocomplete))
-  
-(setq exec-path (cons "/Users/chenshuijin/git/go/go/bin" exec-path))
-(add-to-list 'exec-path "/Users/chenshuijin/git/go/go/bin")
+(setq exec-path (cons "/usr/bin" exec-path))
+(add-to-list 'exec-path "/usr/bin")
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 (load-theme 'taming-mr-arneson t)
