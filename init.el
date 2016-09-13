@@ -16,6 +16,7 @@
 (require 'auto-complete)
 (require 'go-mode)
 (require 'auto-complete-config)
+(require 'go-autocomplete)
 (require 'popup)
 
 (require 'window-numbering)
@@ -52,6 +53,22 @@
 (add-to-list 'exec-path "/usr/bin")
 (add-hook 'before-save-hook 'gofmt-before-save)
 
+;code
+(custom-set-variables
+ '(current-language-environment "Chinese-GBK")
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
+(set-language-environment "utf-8")
+(set-buffer-file-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-clipboard-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+(set default-buffer-file-coding-system 'utf-8)
+
+
+;theme
 (load-theme 'taming-mr-arneson t)
 
 (ac-config-default)
