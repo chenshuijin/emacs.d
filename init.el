@@ -1,26 +1,30 @@
 (setq emacs-load-start-time (current-time))
-;(add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
-;;--------------------------------------------------------------
-;; To solve the chinese coding problem
-;;--------------------------------------------------------------
-;;----end----
+(add-to-list 'load-path "~/.emacs.d/lisp/")
+(let ((default-directory "~/.emacs.d/lisp/"))
+  (normal-top-level-add-subdirs-to-load-path))
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'custom-theme-load-path "~/.emacs.d/color-themes/")
-(load-theme 'taming-mr-arneson t)
-(add-to-list 'load-path "~/.emacs.d/neotree")
+             '("melpa" . "http://melpa.org/packages/") t)
+;; theme
+(add-to-list 'custom-theme-load-path "~/.emacs.d/color-themes/" t)
+(require 'color-theme)
+(color-theme-initialize)
+(load-theme 'material t)
+;;(load-theme 'material t)
+;;(color-theme-taming-mr-arneson)
+;; neotree
 (require 'neotree)
+
 (require 'unicad)
 (require 'auto-complete)
 (require 'go-mode)
 (require 'auto-complete-config)
 (require 'go-autocomplete)
 (require 'popup)
-
+;; window number
 (require 'window-numbering)
 (window-numbering-mode 1)
+(global-linum-mode t)
 (package-initialize)
 (setq url-http-attempt-keepalives nil)
 
@@ -42,28 +46,32 @@
 ;   (exec-path-from-shell-initialize)
 ;    (exec-path-from-shell-copy-env "GOPATH"))
 
+;; go config
 (defun auto-complete-for-go ()
     (auto-complete-mode 1))
 (add-hook 'go-mode-hook 'auto-complete-for-go)
 (defun go-mode-godef-hook()
   (local-set-key (kbd "M-.") 'godef-jump))
 (add-hook 'go-mode-hook 'go-mode-godef-hook)
-
 (setq exec-path (cons "/usr/bin" exec-path))
 (add-to-list 'exec-path "/usr/bin")
 (add-hook 'before-save-hook 'gofmt-before-save)
+;; go config end
 
-;code
-(set-language-environment "UTF-8")
+;; code solve chinese show problem
+(set-language-environment "utf-8")
+(set-buffer-file-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-clipboard-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-buffer-file-coding-system 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 (setq default-process-coding-system 'utf-8)
 (setq-default pathname-coding-system 'utf-8)
 (modify-coding-system-alist 'process "*" 'utf-8)
+(setq locale-coding-system 'utf-8)
+(set default-buffer-file-coding-system 'utf-8)
+;; code end
 
 ;; linum
 (global-linum-mode t)
@@ -71,15 +79,19 @@
 ;; folding
 (require 'origami)
 (global-origami-mode)
-
 (global-set-key(kbd "C-c C-c") 'origami-close-node)
 (global-set-key(kbd "C-c C-o") 'origami-open-node)
 
-
-;theme
-(load-theme 'taming-mr-arneson t)
+;;
+(setq line-number-mode t)
+(setq frame-title-format "Welcome to Emacs")
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(setq inhibit-startup-message t)
+(setq initial-scratch-message "")
+;;
 
 (ac-config-default)
 
-
 (put 'upcase-region 'disabled nil)
+
