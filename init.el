@@ -54,18 +54,26 @@
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;code
-(custom-set-variables
- '(current-language-environment "Chinese-GBK")
- '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
-(set-language-environment "utf-8")
-(set-buffer-file-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
+(set-language-environment "UTF-8")
 (set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
 (set-clipboard-coding-system 'utf-8)
-(setq locale-coding-system 'utf-8)
-(set default-buffer-file-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(setq default-process-coding-system 'utf-8)
+(setq-default pathname-coding-system 'utf-8)
+(modify-coding-system-alist 'process "*" 'utf-8)
+
+;; linum
+(global-linum-mode t)
+
+;; folding
+(require 'origami)
+(global-origami-mode)
+
+(global-set-key(kbd "C-c C-c") 'origami-close-node)
+(global-set-key(kbd "C-c C-o") 'origami-open-node)
 
 
 ;theme
