@@ -9,3 +9,5 @@
 
 # Emacs-config dat
 *.dat
+
+*/archive-contents*
