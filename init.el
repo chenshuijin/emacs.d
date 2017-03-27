@@ -21,6 +21,8 @@
 (require 'auto-complete-config)
 (require 'go-autocomplete)
 (require 'popup)
+(require 'markdown-mode)
+;;(reporte 'eww)
 ;; window number
 (require 'window-numbering)
 (window-numbering-mode 1)
@@ -57,6 +59,7 @@
 (add-hook 'go-mode-hook 'go-mode-godef-hook)
 ;(setq exec-path (cons "/usr/bin" exec-path))
 ;(add-to-list 'exec-path "/usr/bin")
+(setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 ;; go config end
@@ -90,10 +93,18 @@
 (setq frame-title-format "Welcome to Emacs")
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(setq visible-bell nil)
 (setq inhibit-startup-message t)
 (setq initial-scratch-message "")
 ;;
+;;markdown-mode
+(autoload 'markdown-mode "markdown-mode"
+  "Major mode for editing Mardown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+;;
 (ac-config-default)
 
 (put 'upcase-region 'disabled nil)
