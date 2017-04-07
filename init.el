@@ -104,7 +104,19 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
+;; js2-mode
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+;; js2-mode end
+
+;; format whole file
+(defun indent-whole()
+  (interactive)
+  (indent-region (point-min)(point-max))
+  (message "fomat successfully"))
+(global-set-key(kbd "C-c f") 'indent-whole)
 ;;
+
 (ac-config-default)
 
 (put 'upcase-region 'disabled nil)
