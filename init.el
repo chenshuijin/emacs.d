@@ -34,7 +34,6 @@
 (setq url-http-attempt-keepalives nil)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(add-hook 'before-save-hook 'gofmt-before-save)
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
                           "[ \t\n]*$"
@@ -85,8 +84,8 @@
 ;; folding
 (require 'origami)
 (global-origami-mode)
-(global-set-key(kbd "C-c C-c") 'origami-close-node)
-(global-set-key(kbd "C-c C-o") 'origami-open-node)
+(global-set-key(kbd "C-c c") 'origami-close-node)
+(global-set-key(kbd "C-c o") 'origami-open-node)
 
 ;;
 (setq line-number-mode t)
