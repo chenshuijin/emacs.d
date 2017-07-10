@@ -108,6 +108,26 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 ;; js2-mode end
 
+;; rust-mode
+(autoload 'racer-find-definition "racer" "\
+Run the racer find-definition command and process the results.
+
+\(fn)" t nil)
+
+(autoload 'racer-mode "racer" "\
+Minor mode for racer.
+
+\(fn &optional ARG)" t nil)
+
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+(require 'rust-mode)
+(autoload 'company-mode "company" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+(setq rust-format-on-save t)
+;;
+
 ;; format whole file
 (defun indent-whole()
   (interactive)
