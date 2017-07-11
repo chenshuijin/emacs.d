@@ -1,5 +1,17 @@
 # Compiled
 *.elc
 
+session.*
+
 # Packaging
 .cask
+
+# Emacs
+*~
+
+*#
+
+# Emacs-config dat
+*.dat
+
+*/archive-contents*
