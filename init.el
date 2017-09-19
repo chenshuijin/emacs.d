@@ -128,7 +128,8 @@
 (defun json-reformat-before-save()
   (interactive)
   (when (eq major-mode 'json-mode)
-    (let ((json-reformat:indent-width 2))
+    (let ((json-reformat:indent-width 2)
+	  (json-reformat:pretty-string? t))
     (json-reformat-region (point-min)(point-max)))))
 (add-hook 'before-save-hook 'json-reformat-before-save)
 
