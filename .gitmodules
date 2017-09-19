@@ -1,0 +1,3 @@
+[submodule "lisp/prettier-emacs"]
+	path = lisp/prettier-emacs
+	url = https://github.com/prettier/prettier-emacs.git
