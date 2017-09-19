@@ -1,0 +1,18 @@
+[submodule "lisp/prettier-emacs"]
+	path = lisp/prettier-emacs
+	url = https://github.com/prettier/prettier-emacs.git
+[submodule "lisp/json-mode"]
+	path = lisp/json-mode
+	url = https://github.com/joshwnj/json-mode.git
+[submodule "lisp/json-reformat"]
+	path = lisp/json-reformat
+	url = https://github.com/gongo/json-reformat.git
+[submodule "lisp/json-snatcher"]
+	path = lisp/json-snatcher
+	url = https://github.com/Sterlingg/json-snatcher.git
+[submodule "lisp/emacs-solidity"]
+	path = lisp/emacs-solidity
+	url = https://github.com/ethereum/emacs-solidity.git
+[submodule "lisp/js2-mode"]
+	path = lisp/js2-mode
+	url = https://github.com/mooz/js2-mode.git

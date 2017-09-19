@@ -15,3 +15,5 @@ session.*
 *.dat
 
 */archive-contents*
+
+*auto-save-list*

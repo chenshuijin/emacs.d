@@ -14,24 +14,18 @@
 ;;(color-theme-taming-mr-arneson)
 ;; neotree
 (require 'neotree)
-
 (require 'unicad)
 (require 'auto-complete)
 (require 'go-mode)
 (require 'auto-complete-config)
 (require 'go-autocomplete)
 (require 'popup)
-(require 'markdown-mode)
-;;(reporte 'eww)
-;; window number
 (require 'window-numbering)
 (window-numbering-mode 1)
 (global-linum-mode t)
 (package-initialize)
 (setq url-http-attempt-keepalives nil)
 
-(package-initialize)
-(setq url-http-attempt-keepalives nil)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (defun set-exec-path-from-shell-PATH ()
@@ -47,16 +41,16 @@
 (when window-system (set-exec-path-from-shell-PATH))
 ;(when (memq window-system '(mac ns))
 ;   (exec-path-from-shell-initialize)
-;    (exec-path-from-shell-copy-env "GOPATH"))
+;   (exec-path-from-shell-copy-env "GOPATH"))
 
 ;; go config
 (defun auto-complete-for-go ()
-    (auto-complete-mode 1))
+  (auto-complete-mode 1))
 (add-hook 'go-mode-hook 'auto-complete-for-go)
 (defun go-mode-godef-hook()
   (local-set-key (kbd "M-.") 'godef-jump))
 (add-hook 'go-mode-hook 'go-mode-godef-hook)
-;(setq exec-path (cons "/usr/bin" exec-path))
+;(exec-path (cons "/usr/bin" exec-path))
 ;(add-to-list 'exec-path "/usr/bin")
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
@@ -103,10 +97,41 @@
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-;; js2-mode
-(autoload 'js2-mode "js2-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-;; js2-mode end
+;; js-mode
+(autoload 'js2-mode "js2-mode"
+  "Major mode for editing JAVASCRIPT files" t)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+
+(require 'prettier-js)
+(add-hook 'js2-mode-hook 'prettier-js-mode)
+(add-hook 'web-mode-hook 'prettier-js-mode)
+(setq prettier-js-args '(
+  "--trailing-comma" "all"
+  "--bracket-spacing" "false"
+))
+
+(defun enable-minor-mode (my-pair)
+  "Enable minor mode if filename match the regexp.  MY-PAIR is a cons cell (regexp . minor-mode)."
+  (if (buffer-file-name)
+      (if (string-match (car my-pair) buffer-file-name)
+      (funcall (cdr my-pair)))))
+(add-hook 'web-mode-hook #'(lambda ()
+                            (enable-minor-mode
+                             '("\\.jsx?\\'" . prettier-js-mode))))
+
+;; json-mode
+(autoload 'json-mode "json-mode"
+  "Major mode for editing JSON files" t)
+(add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
+(add-to-list 'auto-mode-alist '("\\.jsonld$" . json-mode))
+
+(defun json-reformat-before-save()
+  (interactive)
+  (when (eq major-mode 'json-mode)
+    (let ((json-reformat:indent-width 2)
+	  (json-reformat:pretty-string? t))
+    (json-reformat-region (point-min)(point-max)))))
+(add-hook 'before-save-hook 'json-reformat-before-save)
 
 ;; rust-mode
 (autoload 'racer-find-definition "racer" "\
@@ -134,7 +159,11 @@ Minor mode for racer.
   (indent-region (point-min)(point-max))
   (message "fomat successfully"))
 (global-set-key(kbd "C-c f") 'indent-whole)
+
 ;;
+;; solidity mode
+;;
+(require 'solidity-mode)
 
 (ac-config-default)
 
