@@ -85,7 +85,7 @@
 (setq line-number-mode t)
 (setq frame-title-format "Welcome to Emacs")
 (menu-bar-mode -1)
-(tool-bar-mode -1)
+(when window-system (tool-bar-mode -1))
 (setq visible-bell nil)
 (setq inhibit-startup-message t)
 (setq initial-scratch-message "")
