@@ -27,6 +27,8 @@
 (setq url-http-attempt-keepalives nil)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+;;(add-hook 'before-save-hook 'require-final-newline)
+;;(setq require-final-newline t)
 
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
@@ -102,10 +104,6 @@
   "Major mode for editing JAVASCRIPT files" t)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
-(require 'prettier-js)
-(add-hook 'js2-mode-hook 'prettier-js-mode)
-(add-hook 'web-mode-hook 'prettier-js-mode)
-
 (defun enable-minor-mode (my-pair)
   "Enable minor mode if filename match the regexp.  MY-PAIR is a cons cell (regexp . minor-mode)."
   (if (buffer-file-name)
@@ -114,20 +112,16 @@
 (add-hook 'web-mode-hook #'(lambda ()
                             (enable-minor-mode
                              '("\\.jsx?\\'" . prettier-js-mode))))
-
 ;; json-mode
 (autoload 'json-mode "json-mode"
   "Major mode for editing JSON files" t)
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.jsonld$" . json-mode))
 
-(defun json-reformat-before-save()
-  (interactive)
-  (when (eq major-mode 'json-mode)
-    (let ((json-reformat:indent-width 2)
-	  (json-reformat:pretty-string? t))
-    (json-reformat-region (point-min)(point-max)))))
-(add-hook 'before-save-hook 'json-reformat-before-save)
+(require 'prettier-js)
+(add-hook 'js2-mode-hook 'prettier-js-mode)
+(add-hook 'web-mode-hook 'prettier-js-mode)
+(add-hook 'json-mode-hook 'prettier-js-mode)
 
 ;; rust-mode
 (autoload 'racer-find-definition "racer" "\
