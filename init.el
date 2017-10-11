@@ -28,7 +28,7 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;;(add-hook 'before-save-hook 'require-final-newline)
-(setq require-final-newline t)
+;;(setq require-final-newline t)
 
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
