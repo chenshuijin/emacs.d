@@ -14,6 +14,7 @@
 ;;(color-theme-taming-mr-arneson)
 ;; neotree
 (require 'neotree)
+(global-set-key(kbd "C-c n") 'neotree-toggle)
 (require 'unicad)
 (require 'auto-complete)
 (require 'go-mode)
