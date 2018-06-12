@@ -156,6 +156,12 @@ Minor mode for racer.
 ;;
 (require 'solidity-mode)
 
+(require 'ggtags)
+(add-hook 'c-mode-common-hook
+	  (lambda ()
+	    (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+	      (ggtags-mode 1))))
+
 (ac-config-default)
 
 (put 'upcase-region 'disabled nil)
