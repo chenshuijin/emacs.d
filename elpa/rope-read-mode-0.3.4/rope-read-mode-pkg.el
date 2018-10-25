@@ -1,0 +1,1 @@
+(define-package "rope-read-mode" "0.3.4" "Rearrange lines to read text smoothly" 'nil :commit "71e475ab35555e0a1eca26d73acf1ced911e422e" :keywords '("reading" "convenience" "chill") :authors '(("Marco Wahl" . "marcowahlsoft@gmail.com")) :maintainer '("Marco Wahl" . "marcowahlsoft@gmail.com") :url "https://github.com/marcowahl/rope-read-mode")

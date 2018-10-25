@@ -4,7 +4,10 @@
   (normal-top-level-add-subdirs-to-load-path))
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+;;(package-initialize)
+;;(set package-check-signature nil)
+
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/color-themes/" t)
 (require 'color-theme)
@@ -156,6 +159,21 @@ Minor mode for racer.
 ;;
 (require 'solidity-mode)
 
+
+;; python elpy
+(require 'elpy)
+(elpy-enable)
+(setq elpy-rpc-backend 'jedi)
+
+(when (require 'flycheck nil t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+    (add-hook 'elpy-mode-hook 'flycheck-mode))
+(require 'py-autopep8)
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+(setq python-shell-interpreter "python"
+      python-shell-interpreter-args "-i")
+
+;; ggtags
 (require 'ggtags)
 (add-hook 'c-mode-common-hook
 	  (lambda ()
