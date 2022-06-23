@@ -18,6 +18,8 @@
 ;; neotree
 (require 'neotree)
 (global-set-key(kbd "C-c n") 'neotree-toggle)
+;;(global-set-key "\C-h" 'backward-delete-char-untabify)
+;;(global-set-key "\d" 'delete-char)
 (require 'unicad)
 (require 'auto-complete)
 (require 'go-mode)
@@ -27,12 +29,39 @@
 (require 'window-numbering)
 (window-numbering-mode 1)
 (global-linum-mode t)
+
 (package-initialize)
 (setq url-http-attempt-keepalives nil)
 
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;;
+(require 'protobuf-mode)
+(setq auto-mode-alist  (cons '(".proto$" . protobuf-mode) auto-mode-alist))
+
+(defconst my-protobuf-style
+  '((c-basic-offset . 2)
+    (indent-tabs-mode . nil)))
+
+(add-hook 'protobuf-mode-hook
+	  (lambda () (c-add-style "my-style" my-protobuf-style t)))
+
+;; clang-format
+(require 'clang-format)
+;;(global-set-key (kbd "C-c C-f") 'clang-format-region)
+
+;;(defun clangfmt-before-save ()
+;;  (interactive)
+;;  (when (eq major-mode 'protobuf-mode) (clang-format-buffer)))
+
+;;(add-hook 'before-save-hook 'clangfmt-before-save)
+
+
+;; clang-format end
+
+;;
+(add-hook 'write-file-hooks 'delete-trailing-whitespace)
 ;;(add-hook 'before-save-hook 'require-final-newline)
-;;(setq require-final-newline t)
+(setq require-final-newline t)
+
 
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
@@ -45,21 +74,26 @@
 ;;(setenv "GOPATH" (shell-command-to-string "pwd"))
 
 (when window-system (set-exec-path-from-shell-PATH))
-;(when (memq window-system '(mac ns))
-;   (exec-path-from-shell-initialize)
-;   (exec-path-from-shell-copy-env "GOPATH"))
+					;(when (memq window-system '(mac ns))
+					;   (exec-path-from-shell-initialize)
+					;   (exec-path-from-shell-copy-env "GOPATH"))
 
 ;; go config
+(require 'golint)
+
 (defun auto-complete-for-go ()
   (auto-complete-mode 1))
 (add-hook 'go-mode-hook 'auto-complete-for-go)
 (defun go-mode-godef-hook()
   (local-set-key (kbd "M-.") 'godef-jump))
 (add-hook 'go-mode-hook 'go-mode-godef-hook)
-;(exec-path (cons "/usr/bin" exec-path))
-;(add-to-list 'exec-path "/usr/bin")
+					;(exec-path (cons "/usr/bin" exec-path))
+					;(add-to-list 'exec-path "/usr/bin")
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
+(add-hook 'before-save-hook 'golint-before-save)
+
+
 
 ;; go config end
 
@@ -75,11 +109,9 @@
 (setq-default pathname-coding-system 'utf-8)
 (modify-coding-system-alist 'process "*" 'utf-8)
 (setq locale-coding-system 'utf-8)
-(set default-buffer-file-coding-system 'utf-8)
-;; code end
+(define-coding-system-alias 'UTF-8 'utf-8)
 
-;; linum
-(global-linum-mode t)
+;; code end
 
 ;; folding
 (require 'origami)
@@ -89,6 +121,7 @@
 
 ;;
 (setq line-number-mode t)
+(setq column-number-mode t)
 (setq frame-title-format "Welcome to Emacs")
 (menu-bar-mode -1)
 (when window-system (tool-bar-mode -1))
@@ -112,10 +145,10 @@
   "Enable minor mode if filename match the regexp.  MY-PAIR is a cons cell (regexp . minor-mode)."
   (if (buffer-file-name)
       (if (string-match (car my-pair) buffer-file-name)
-      (funcall (cdr my-pair)))))
+	  (funcall (cdr my-pair)))))
 (add-hook 'web-mode-hook #'(lambda ()
-                            (enable-minor-mode
-                             '("\\.jsx?\\'" . prettier-js-mode))))
+                             (enable-minor-mode
+                              '("\\.jsx?\\'" . prettier-js-mode))))
 ;; json-mode
 (autoload 'json-mode "json-mode"
   "Major mode for editing JSON files" t)
@@ -167,7 +200,7 @@ Minor mode for racer.
 
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-    (add-hook 'elpy-mode-hook 'flycheck-mode))
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
 (require 'py-autopep8)
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 (setq python-shell-interpreter "python"
@@ -185,3 +218,25 @@ Minor mode for racer.
 (put 'upcase-region 'disabled nil)
 
 (put 'scroll-left 'disabled nil)
+
+;(setq original-y-or-n-p 'y-or-n-p)
+;(defalias 'original-y-or-n-p (symbol-function 'y-or-n-p))
+;(defun default-yes-sometimes (prompt)
+;  (if (or
+;       (string-match "Really proceed with writing" prompt)
+;      t
+;      (original-y-or-n-p prompt)))
+;(defalias 'yes-or-no-p 'default-yes-sometimes)
+;(defalias 'y-or-n-p 'default-yes-sometimes)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (## rope-read-mode py-autopep8 flycheck elpy))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
