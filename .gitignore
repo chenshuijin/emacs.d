@@ -19,3 +19,4 @@ session.*
 */archive-contents*
 
 *auto-save-list*
+*.pyc
