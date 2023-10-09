@@ -34,7 +34,7 @@
 
 (require 'dash)
 (require 's)
-(require 'cl)
+(require 'cl-lib)
 (require 'origami-parsers)
 
 ;;; fold display mode and faces

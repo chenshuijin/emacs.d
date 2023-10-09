@@ -1,0 +1,38 @@
+ignoreGeneratedHeader = false
+severity = "warning"
+confidence = 0.8
+errorCode = 0
+warningCode = 0
+
+# Enable all available rules
+enableAllRules = true
+
+# Disabled rules
+[rule.blank-imports]
+    Disabled = false
+[rule.file-header]
+    Disabled = true
+[rule.max-public-structs]
+    Disabled = false
+    Arguments = [120]
+[rule.line-length-limit]
+    Arguments = [120]
+[rule.function-length]
+    Arguments = [120,120]
+[rule.banned-characters]
+    Disabled = false
+    arguments =["Ω","Σ","σ"]
+
+# Rule tuning
+[rule.argument-limit]
+    Arguments = [5]
+[rule.cyclomatic]
+    Arguments = [15]
+[rule.cognitive-complexity]
+    Arguments = [15]
+[rule.function-result-limit]
+    Arguments = [3]
+[rule.error-strings]
+    Arguments = ["mypackage.Error"]
+[rule.add-constant]
+  arguments = [{ maxLitCount = "3", allowStrs = "\"\"", allowInts = "0,1,2,3,4,5,6,7,8,9,10,32,64", allowFloats = "0.0,0.,1.0,1.,2.0,2.", ignoreFuncs = "os\\.*,fmt\\.Println,make" }]

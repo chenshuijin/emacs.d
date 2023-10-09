@@ -53,7 +53,7 @@
 ;;
 ;;; Code:
 
-(eval-when-compile (require 'cl))
+(eval-when-compile (require 'cl-lib))
 
 (push "^No window numbered .$" debug-ignored-errors)
 
@@ -120,7 +120,7 @@ If prefix ARG is given, delete the window instead of selecting it."
       (let ((window (aref windows i)))
         (unless window
           (push (% (1+ i) 10) left)))
-      (decf i))
+      (cl-decf i))
     left))
 
 (defvar window-numbering-windows nil

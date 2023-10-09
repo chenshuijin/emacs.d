@@ -13,7 +13,7 @@
 (require 'company-template)
 
 (eval-when-compile
-  (require 'cl))
+  (require 'cl-lib))
 
 (require 'go-mode)
 (require 'company)

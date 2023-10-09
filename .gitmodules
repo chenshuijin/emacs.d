@@ -19,3 +19,6 @@
 [submodule "lisp/ggtags"]
 	path = lisp/ggtags
 	url = https://github.com/leoliu/ggtags.git
+[submodule "elpa/go-mode"]
+	path = elpa/go-mode
+	url = http://github.com/dominikh/go-mode.el

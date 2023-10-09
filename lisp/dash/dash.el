@@ -586,10 +586,10 @@ Alias: `-any'"
 
 ;; TODO: emacs23 support, when dropped remove the condition
 (eval-when-compile
-  (require 'cl)
+  (require 'cl-lib)
   (if (fboundp 'gv-define-simple-setter)
       (gv-define-simple-setter -first-item setcar)
-    (require 'cl)
+    (require 'cl-lib)
     (with-no-warnings
       (defsetf -first-item (x) (val) `(setcar ,x ,val)))))
 

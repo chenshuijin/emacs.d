@@ -35,7 +35,7 @@
 ;;; Code:
 
 (eval-when-compile
-  (require 'cl))
+  (require 'cl-lib))
 
 (require 'auto-complete)
 
@@ -77,12 +77,12 @@
                            (when (and cur threshold)
                              (if (>= cur (* total threshold))
                                  (setq cur nil)
-                               (incf n)
-                               (incf cur (cdr a))))
+                               (cl-incf n)
+                               (cl-incf cur (cdr a))))
                            (car a))
                          (mapcar (lambda (string)
 				   (let ((score (ac-comphist-score db string prefix)))
-				     (incf total score)
+				     (cl-incf total score)
 				     (cons string score)))
 				 collection)))
     (if threshold

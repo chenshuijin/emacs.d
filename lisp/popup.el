@@ -33,7 +33,7 @@
 
 (defconst popup-version "0.5.3")
 
-
+
 
 ;;; Utilities
 

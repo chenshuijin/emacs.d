@@ -6,6 +6,7 @@
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 ;;(package-initialize)
+;;(package-refresh-contents)
 ;;(set package-check-signature nil)
 
 ;; theme
@@ -32,6 +33,11 @@
 
 (package-initialize)
 (setq url-http-attempt-keepalives nil)
+
+;; slime
+(require 'slime-autoloads)
+(setq inferior-lisp-program "sbcl")
+;; slime
 
 ;;
 (require 'protobuf-mode)
@@ -79,7 +85,8 @@
 					;   (exec-path-from-shell-copy-env "GOPATH"))
 
 ;; go config
-(require 'golint)
+;;(require 'golint)
+(require 'golangci-lint)
 
 (defun auto-complete-for-go ()
   (auto-complete-mode 1))
@@ -91,11 +98,21 @@
 					;(add-to-list 'exec-path "/usr/bin")
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
-(add-hook 'before-save-hook 'golint-before-save)
-
+;;(add-hook 'before-save-hook 'golint-before-save)
+(add-hook 'before-save-hook 'golangci-lint-before-save)
 
 
 ;; go config end
+
+;; hot-key
+(defun kill-other-buffers()
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer (delq (neo-global--get-buffer) (delq (current-buffer) (buffer-list)))))
+
+(global-set-key(kbd "C-c k") 'kill-other-buffers)
+
+;; hot-key-end
 
 ;; code solve chinese show problem
 (set-language-environment "utf-8")
@@ -156,30 +173,18 @@
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 (add-to-list 'auto-mode-alist '("\\.jsonld$" . json-mode))
 
-(require 'prettier-js)
+;;(require 'prettier-js)
 (add-hook 'js2-mode-hook 'prettier-js-mode)
 (add-hook 'web-mode-hook 'prettier-js-mode)
 (add-hook 'json-mode-hook 'prettier-js-mode)
 
 ;; rust-mode
-(autoload 'racer-find-definition "racer" "\
-Run the racer find-definition command and process the results.
-
-\(fn)" t nil)
-
-(autoload 'racer-mode "racer" "\
-Minor mode for racer.
-
-\(fn &optional ARG)" t nil)
-
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
 (require 'rust-mode)
-(autoload 'company-mode "company" nil t)
-(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+;;(add-hook 'rust-mode-hook 'lsp-deferred)
+(add-hook 'rust-mode-hook 'eglot-ensure)
 (setq rust-format-on-save t)
-;;
+
+;; end rust-mode
 
 ;; format whole file
 (defun indent-whole()
@@ -191,7 +196,7 @@ Minor mode for racer.
 ;;
 ;; solidity mode
 ;;
-(require 'solidity-mode)
+;;(require 'solidity-mode)
 
 
 ;; python elpy
@@ -208,11 +213,11 @@ Minor mode for racer.
       python-shell-interpreter-args "-i")
 
 ;; ggtags
-(require 'ggtags)
-(add-hook 'c-mode-common-hook
-	  (lambda ()
-	    (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
-	      (ggtags-mode 1))))
+;;(require 'ggtags)
+;;(add-hook 'c-mode-common-hook
+;;	  (lambda ()
+;;	    (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+;;	      (ggtags-mode 1))))
 
 (ac-config-default)
 
@@ -234,7 +239,8 @@ Minor mode for racer.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (## rope-read-mode py-autopep8 flycheck elpy))))
+ '(package-selected-packages
+   '(eglot lsp-mode rust-mode slime go-mode ## rope-read-mode py-autopep8 flycheck elpy)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
