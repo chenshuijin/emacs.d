@@ -93,6 +93,7 @@
 (require 'golangci-lint)
 ;; 启用 go-mode
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+(add-hook 'before-save-hook 'golangci-lint-before-save)
 
 ;; 配置 eglot
 (use-package eglot
