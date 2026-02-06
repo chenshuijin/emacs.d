@@ -46,7 +46,7 @@ caused the first message."
   (interactive)
   (compilation-start
    (mapconcat #'shell-quote-argument
-	      (list "revive" "-config" "/Users/csj/.emacs.d/lisp/go/.revive.toml" (expand-file-name buffer-file-name)) " ")
+	      (list "revive" "-config" (concat (getenv "HOME") "/.emacs.d/lisp/go/.revive.toml") (expand-file-name buffer-file-name)) " ")
               ;(list "golangci-lint" "--config=~/.emacs.d/lisp/go/.golangci.yml" "run"  (expand-file-name buffer-file-name)) " ")
    'golangci-lint-mode))
 
