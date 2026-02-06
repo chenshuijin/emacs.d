@@ -23,9 +23,9 @@
 ;;(global-set-key "\d" 'delete-char)
 (require 'unicad)
 (require 'auto-complete)
-(require 'go-mode)
+;(require 'go-mode)
 (require 'auto-complete-config)
-(require 'go-autocomplete)
+;(require 'go-autocomplete)
 (require 'popup)
 (require 'window-numbering)
 (window-numbering-mode 1)
@@ -33,6 +33,10 @@
 
 (package-initialize)
 (setq url-http-attempt-keepalives nil)
+
+(unless (require 'use-package nil t)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 ;; slime
 (require 'slime-autoloads)
@@ -87,20 +91,25 @@
 ;; go config
 ;;(require 'golint)
 (require 'golangci-lint)
+;; 启用 go-mode
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 
-(defun auto-complete-for-go ()
-  (auto-complete-mode 1))
-(add-hook 'go-mode-hook 'auto-complete-for-go)
-(defun go-mode-godef-hook()
-  (local-set-key (kbd "M-.") 'godef-jump))
-(add-hook 'go-mode-hook 'go-mode-godef-hook)
-					;(exec-path (cons "/usr/bin" exec-path))
-					;(add-to-list 'exec-path "/usr/bin")
-(setq gofmt-command "goimports")
-(add-hook 'before-save-hook 'gofmt-before-save)
-;;(add-hook 'before-save-hook 'golint-before-save)
-(add-hook 'before-save-hook 'golangci-lint-before-save)
+;; 配置 eglot
+(use-package eglot
+  :ensure t
+  :config
+  (add-hook 'go-mode-hook 'eglot-ensure))
 
+;; 保存时自动格式化
+(add-hook 'go-mode-hook
+        (lambda ()
+          (add-hook 'before-save-hook 'gofmt-before-save nil t)))
+
+;; 配置 gopls 特定选项
+(setq gopls-arguments '("-remote=auto" "-logfile=/tmp/gopls.log"))
+(add-hook 'go-mode-hook
+        (lambda ()
+          (setq-local lsp-header-line-format "gopls")))
 
 ;; go config end
 
@@ -240,7 +249,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(eglot lsp-mode rust-mode slime go-mode ## rope-read-mode py-autopep8 flycheck elpy)))
+   (quote
+    (eglot lsp-mode rust-mode slime go-mode ## rope-read-mode py-autopep8 flycheck elpy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
